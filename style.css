@@ -25,13 +25,13 @@ h1 {
 }
 
 #circle {
-  position: relative;
-  margin: 0 auto;
-  width: 270px;
-  height: 270px;
+	position: relative;
+	margin: 0 auto;
+	width: 270px;
+	height: 270px;
 	border: 3px solid white;
-  border-radius: 50%;
-  overflow: hidden;
+	border-radius: 50%;
+	overflow: hidden;
 }
 
 #circle-inner {
@@ -65,17 +65,28 @@ p {
 }
 
 .btn {
-  font-size: 35px;
-  padding-top: -5px;
-  padding-bottom: -5px;
-  min-width: 150px;
-  color: red;
-  background-color: white;
-  margin: 20px;
-  font-weight: bold;
+	font-size: 35px;
+	padding-top: -5px;
+	padding-bottom: -5px;
+	min-width: 150px;
+	color: red;
+	background-color: white;
+	margin: 20px;
+	font-weight: bold;
 }
 
 .btn:hover {
-  background-color: #646565;
-  color: white;
+	background-color: #646565;
+	color: white;
+}
+
+.modalbtn {
+	font-size: 15px;
+	font-weight: bold;
+	color: red;
+}
+
+.modal {
+	top: 210px;
+	color: red;
 }

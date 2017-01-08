@@ -5,23 +5,6 @@ $(document).ready(function() {
 	// var sessionT = 40; // default value for session
 	// var breakT = 5; // default value for break
 	var isOn = false;
-
-	// function startTimer(timeLength) {
-	// 	seconds = timeLength + 1;
-	// 	setInterval(function tick() {
-	// 		// console.log('seconds: ', seconds);
-	// 		--seconds;
-	// 		var secs = seconds;
-	// 		secs %= 3600;
-	// 		// console.log('secs: ', secs);
-	// 		var mns = Math.floor(secs / 60);
-	// 		secs %= 60;
-	// 		var pretty = (mns < 10 ? '0' : '') + mns + ':' + (secs < 10 ? '0' : '') + secs;
-	// 		console.log('pretty: ', pretty);
-	// 		$('#time').html(pretty);
-	// 	}, 1000);
-	// }
-
 	var intervalId;
 
 	function startTime(seconds) {
@@ -35,7 +18,6 @@ $(document).ready(function() {
 	}
 
 	function tick() {
-
 		var timeStr = $('#time').html().split(':');
 		console.log(timeStr);
 		var elapsed = Number(timeStr[0] * 60 + Number(timeStr[1]));
@@ -43,6 +25,7 @@ $(document).ready(function() {
 		
 		if (elapsed === 0) {
 			stopTime();
+			$("#myModal").modal();
 			return;
 		}
 		
@@ -115,26 +98,18 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#start-reset-btn').on('click', function() {
-		console.log('start before isOn: ', isOn);
-		if (isOn) {
-			$('#start-reset-btn').html('Start');
-			stopTime();
-			$('#length').html(40);
-			$('#break').html(5);
-			setTimeText();
-			// set timer = 0;
-		} else {
-			$('#start-reset-btn').html('Reset');
-			startTime();
-		}
-
-		console.log('start after isOn: ', isOn);
+	$('#start-btn').on('click', function() {
+		startTime();
 	});
 
 	$('#stop-btn').on('click', function() {
-		console.log('STOP before isOn: ', isOn);
-		isOn ? stopTime() : startTime();
-		console.log('STOP after isOn: ', isOn);
+		stopTime();
+	});
+
+	$('#reset-btn').on('click', function() {
+		stopTime();
+		$('#length').html(40);
+		$('#break').html(5);
+		setTimeText();
 	});
 });
