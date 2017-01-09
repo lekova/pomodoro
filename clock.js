@@ -1,52 +1,58 @@
-var $ = window.$;
-
 $(document).ready(function() {
-	// var timer = 0;
-	// var sessionT = 40; // default value for session
-	// var breakT = 5; // default value for break
-	var isOn = false;
+
+	var isTimerStarted = false;
+	var isBreak = false;
+	var isInitial = true;
 	var intervalId;
-
-	function startTime(seconds) {
-		intervalId = setInterval(tick, 1000);
-		isOn = true;
-	}
-
+	
 	function stopTime() {
 		clearInterval(intervalId);
-		isOn = false;
+		isTimerStarted = false;
 	}
-
 	function tick() {
 		var timeStr = $('#time').html().split(':');
-		console.log(timeStr);
 		var elapsed = Number(timeStr[0] * 60 + Number(timeStr[1]));
-		console.log('elapsed: ', elapsed);
+		//console.log('timeStr', timeStr, 'elapsed: ', elapsed);
 		
 		if (elapsed === 0) {
 			stopTime();
-			$("#myModal").modal();
+			if(isInitial) {
+				isBreak = true;
+				isInitial = false;
+			}
+			isBreak ? setModalBreak() : setModalTime();
+			$('#myModal').modal();
 			return;
 		}
 		
 		--elapsed;
 		var secs = elapsed;
 		secs %= 3600;
-		// console.log('secs: ', secs);
 		var mns = Math.floor(secs / 60);
 		secs %= 60;
 		var pretty = (mns < 10 ? '0' : '') + mns + ':' + (secs < 10 ? '0' : '') + secs;
 		$('#time').html(pretty);
 	}
+
 	function setTimeText() {
-		var secs = Number($('#length').html()) * 60;
-		console.log('secs: ', secs);
+		var secs = isBreak ? Number($('#break').html()) * 60 : Number($('#length').html()) * 60;
 		secs %= 3600;
-		// console.log('secs: ', secs);
 		var mns = Math.floor(secs / 60);
 		secs %= 60;
 		var pretty = (mns < 10 ? '0' : '') + mns + ':' + (secs < 10 ? '0' : '') + secs;
 		$('#time').html(pretty);
+	}
+
+	function setModalBreak() {
+		console.log('setModalBreak');
+		$('#modal-title-text').html('It\'s time to take a break');
+		$('#modal-body-text').html('For ' + $('#break').html() + ' minutes');
+	}
+
+	function setModalTime() {
+		console.log('setmodalTime');
+		$('#modal-title-text').html('It\'s time to start work');
+		$('#modal-body-text').html('For ' + $('#length').html() + ' minutes');
 	}
 
 	$('#circle').on('click', function() {
@@ -63,7 +69,6 @@ $(document).ready(function() {
 		if (time > 0) {
 			$('#length').html(Number($('#length').html()) - 1);
 		}
-
 		setTimeText();
 	});
 
@@ -89,8 +94,7 @@ $(document).ready(function() {
 		var lengthTime = Number($('#length').html());
 
 		if (breakTime >= lengthTime) {
-			// if break goes above work length
-			// set time break time on length time
+			// if break goes above work length, set time break time on length time
 			// so the user will notice a no change on the field
 			$('#break').html(lengthTime);
 		} else {
@@ -99,7 +103,11 @@ $(document).ready(function() {
 	});
 
 	$('#start-btn').on('click', function() {
-		startTime();
+		if(!isTimerStarted) {
+			intervalId = setInterval(tick, 1000);
+			isBreak = false;
+			isTimerStarted = true;
+		}
 	});
 
 	$('#stop-btn').on('click', function() {
@@ -108,8 +116,28 @@ $(document).ready(function() {
 
 	$('#reset-btn').on('click', function() {
 		stopTime();
-		$('#length').html(40);
-		$('#break').html(5);
+		$('#length').html(2);
+		$('#break').html(1);
 		setTimeText();
+		isBreak = false;
+		isTimerStarted = false;
 	});
+
+	$('#modal-btn-ok').on('click', function() {
+		console.log('modal-btn-ok isBreak', isBreak);
+
+		if(isBreak) {
+			$('#time').html(formatNumber(Number($('#break').html())) + ':00');
+		} else {
+			$('#time').html(formatNumber(Number($('#length').html())) + ':00');
+		}
+
+		isBreak = isBreak ? false : true; 
+		clearInterval(intervalId);
+		intervalId = setInterval(tick, 1000);
+	});
+
+	function formatNumber(number) {
+		return number < 10 ? '0' + number : number;
+	}
 });
