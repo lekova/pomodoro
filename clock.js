@@ -1,10 +1,11 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
 	var isTimerStarted = false;
 	var isBreak = false;
 	var isInitial = true;
 	var intervalId;
-	
+	var value = 0;
+
 	function stopTime() {
 		clearInterval(intervalId);
 		isTimerStarted = false;
@@ -13,10 +14,10 @@ $(document).ready(function() {
 		var timeStr = $('#time').html().split(':');
 		var elapsed = Number(timeStr[0] * 60 + Number(timeStr[1]));
 		//console.log('timeStr', timeStr, 'elapsed: ', elapsed);
-		
+
 		if (elapsed === 0) {
 			stopTime();
-			if(isInitial) {
+			if (isInitial) {
 				isBreak = true;
 				isInitial = false;
 			}
@@ -24,13 +25,34 @@ $(document).ready(function() {
 			$('#myModal').modal();
 			return;
 		}
-		
+
 		--elapsed;
 		var secs = elapsed;
 		secs %= 3600;
 		var mns = Math.floor(secs / 60);
 		secs %= 60;
 		var pretty = (mns < 10 ? '0' : '') + mns + ':' + (secs < 10 ? '0' : '') + secs;
+		
+		var maxTime;
+		if(!isBreak) {
+			maxTime = Number($('#length').html());
+		} else {
+			maxTime = Number($('#break').html());
+		}
+
+		value = Number($('#length').html() * 60) - elapsed;
+		addValue = $('#progress_bar').val(value);
+
+		$('.progress-value').html(value + '%');
+		var $ppc = $('.progress-pie-chart'),
+			deg = 360 * value / 100;
+		if (value > 50) {
+			$ppc.addClass('gt-50');
+		}
+
+		$('.ppc-progress-fill').css('transform', 'rotate(' + deg + 'deg)');
+		$('.ppc-percents span').html(value + '%');
+		
 		$('#time').html(pretty);
 	}
 
@@ -44,18 +66,16 @@ $(document).ready(function() {
 	}
 
 	function setModalBreak() {
-		console.log('setModalBreak');
 		$('#modal-title-text').html('It\'s time to take a break');
 		$('#modal-body-text').html('For ' + $('#break').html() + ' minutes');
 	}
 
 	function setModalTime() {
-		console.log('setmodalTime');
 		$('#modal-title-text').html('It\'s time to start work');
 		$('#modal-body-text').html('For ' + $('#length').html() + ' minutes');
 	}
 
-	$('#circle').on('click', function() {
+	$('#circle').on('click', function () {
 		// var time = Number($('#length').html()) * 60;
 		var timeStr = $('#time').html().split(':');
 		var elapsed = Number(timeStr[0] * 60 + Number(timeStr[1]));
@@ -63,7 +83,7 @@ $(document).ready(function() {
 		// startTime(elapsed + 1);
 	});
 
-	$('#length-minus').on('click', function() {
+	$('#length-minus').on('click', function () {
 		var time = Number($('#length').html());
 		// timer cannot go bellow 0 min
 		if (time > 0) {
@@ -72,7 +92,7 @@ $(document).ready(function() {
 		setTimeText();
 	});
 
-	$('#length-plus').on('click', function() {
+	$('#length-plus').on('click', function () {
 		var time = Number($('#length').html());
 		if (time < 60) {
 			$('#length').html(time + 1);
@@ -80,7 +100,7 @@ $(document).ready(function() {
 		setTimeText();
 	});
 
-	$('#break-minus').on('click', function() {
+	$('#break-minus').on('click', function () {
 		var breakTime = Number($('#break').html());
 		// var lengthTime =  Number($('#length').html());
 		// timer cannot go bellow 0 min
@@ -89,7 +109,7 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#break-plus').on('click', function() {
+	$('#break-plus').on('click', function () {
 		var breakTime = Number($('#break').html());
 		var lengthTime = Number($('#length').html());
 
@@ -102,19 +122,19 @@ $(document).ready(function() {
 		}
 	});
 
-	$('#start-btn').on('click', function() {
-		if(!isTimerStarted) {
+	$('#start-btn').on('click', function () {
+		if (!isTimerStarted) {
 			intervalId = setInterval(tick, 1000);
 			isBreak = false;
 			isTimerStarted = true;
 		}
 	});
 
-	$('#stop-btn').on('click', function() {
+	$('#stop-btn').on('click', function () {
 		stopTime();
 	});
 
-	$('#reset-btn').on('click', function() {
+	$('#reset-btn').on('click', function () {
 		stopTime();
 		$('#length').html(2);
 		$('#break').html(1);
@@ -123,16 +143,16 @@ $(document).ready(function() {
 		isTimerStarted = false;
 	});
 
-	$('#modal-btn-ok').on('click', function() {
+	$('#modal-btn-ok').on('click', function () {
 		console.log('modal-btn-ok isBreak', isBreak);
 
-		if(isBreak) {
+		if (isBreak) {
 			$('#time').html(formatNumber(Number($('#break').html())) + ':00');
 		} else {
 			$('#time').html(formatNumber(Number($('#length').html())) + ':00');
 		}
 
-		isBreak = isBreak ? false : true; 
+		isBreak = isBreak ? false : true;
 		clearInterval(intervalId);
 		intervalId = setInterval(tick, 1000);
 	});
@@ -140,4 +160,34 @@ $(document).ready(function() {
 	function formatNumber(number) {
 		return number < 10 ? '0' + number : number;
 	}
+
+	//TEST ===============
+
+	// var progressbar = $('#progress_bar');
+	// max = progressbar.attr('max');
+	// time = (1000 / max) * 5;
+	// value = progressbar.val();
+
+	// var loading = function () {
+	// 	value += 1;
+	// 	addValue = progressbar.val(value);
+
+	// 	$('.progress-value').html(value + '%');
+	// 	var $ppc = $('.progress-pie-chart'),
+	// 		deg = 360 * value / 100;
+	// 	if (value > 50) {
+	// 		$ppc.addClass('gt-50');
+	// 	}
+
+	// 	$('.ppc-progress-fill').css('transform', 'rotate(' + deg + 'deg)');
+	// 	$('.ppc-percents span').html(value + '%');
+
+	// 	if (value == max) {
+	// 		clearInterval(animate);
+	// 	}
+	// };
+
+	// var animate = setInterval(function () {
+	// 	loading();
+	// }, time);
 });
