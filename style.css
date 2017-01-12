@@ -65,10 +65,10 @@ p {
 }
 
 .btn {
-	font-size: 35px;
+	font-size: 25px;
 	padding-top: -5px;
 	padding-bottom: -5px;
-	min-width: 150px;
+	min-width: 100px;
 	color: red;
 	background-color: white;
 	margin: 20px;
