@@ -9,16 +9,26 @@ h1 {
 	font-size: 60px;
 	margin-top: 25px;
 }
-#session-settings {
-	font-size: 1.5em;
-	height: 100%;
-}
 .glyphicon:hover {
 	color: #646565;
+	cursor: pointer;
 }
 p {
 	font-size: 3em;
 	z-index: 999;
+}
+.noselect {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: default;
+}
+#session-settings {
+	font-size: 1.5em;
+	height: 100%;
 }
 #session {
 	padding-top: 30px;
