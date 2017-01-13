@@ -29,7 +29,7 @@
 						<div class="col-xs-4">
 							<span class="glyphicon glyphicon-triangle-left" id="length-minus"></span>
 						</div>
-						<div class="col-xs-4" id="length"> 2 </div>
+						<div class="col-xs-4" id="length"> 1 </div>
 						<div class="col-xs-4">
 							<span class="glyphicon glyphicon-triangle-right" id="length-plus"></span>
 						</div>
@@ -52,16 +52,24 @@
 		<div class="col-xs-1 col-sm-4"></div>
 	</div>
 
-	<div class="row row-circle">
-		<div id="circle">
-			<div id="circle-inner">
-				<p id="session">SESSION:</p>
-				<p id="time">02:00</p>
-				<p id="play-pause">||</p>
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="pbar" class="progress-pie-chart" data-percent="0">
+				<div class="ppc-progress">
+					<div class="ppc-progress-fill"></div>
+				</div>
+				<div class="ppc-percents">
+					<div class="pcc-percents-wrapper">
+						<p id="session">WORK</p>
+						<p id="time">01:00</p>
+						<span>0%</span>
+					</div>
+				</div>
 			</div>
+			<progress style="display: none" id="progress_bar" value="0" max="100"></progress>
 		</div>
 	</div>
-
+	
 	<div class="row">
 		<button class="btn" id="start-btn">Start</button>
 		<button class="btn" id="stop-btn">Stop</button>
@@ -82,23 +90,7 @@
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="bar_container">
-			<div id="main_container">
-				<div id="pbar" class="progress-pie-chart" data-percent="0">
-					<div class="ppc-progress">
-						<div class="ppc-progress-fill"></div>
-					</div>
-					<div class="ppc-percents">
-						<div class="pcc-percents-wrapper">
-							<span>%</span>
-						</div>
-					</div>
-				</div>
-				<progress style="display: none" id="progress_bar" value="0" max="100"></progress>
-			</div>
-		</div>
-	</div>
+	
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
