@@ -10,16 +10,18 @@ $(document).ready(function () {
 		clearInterval(intervalId);
 		isTimerStarted = false;
 	}
+
 	function tick() {
 		var timeStr = $('#time').html().split(':');
 		var elapsed = Number(timeStr[0] * 60 + Number(timeStr[1]));
-		//console.log('timeStr', timeStr, 'elapsed: ', elapsed);
 
 		if (elapsed === 0) {
 			stopTime();
 			if (isInitial) {
 				isBreak = true;
 				isInitial = false;
+			} else {
+				isBreak = isBreak ? false : true;
 			}
 			isBreak ? setModalBreak() : setModalTime();
 			$('#myModal').modal();
@@ -33,20 +35,25 @@ $(document).ready(function () {
 		secs %= 60;
 		var pretty = (mns < 10 ? '0' : '') + mns + ':' + (secs < 10 ? '0' : '') + secs;
 		
-		var maxTime;
-		if(!isBreak) {
-			maxTime = Number($('#length').html());
+		var percent;
+		if(isBreak) {
+			percent = Math.round((elapsed * 100) / Number($('#break').html() * 60),1);
+
 		} else {
-			maxTime = Number($('#break').html());
+			percent = Math.round((elapsed * 100) / Number($('#length').html() * 60),1);
 		}
 
-		value = Number($('#length').html() * 60) - elapsed;
+		value = 100 - percent;
+
 		addValue = $('#progress_bar').val(value);
 
 		$('.progress-value').html(value + '%');
 		var $ppc = $('.progress-pie-chart'),
 			deg = 360 * value / 100;
-		if (value > 50) {
+		if (value < 50) {
+			$ppc.removeClass('gt-50');
+		}
+		else if (value > 50) {
 			$ppc.addClass('gt-50');
 		}
 
@@ -74,14 +81,6 @@ $(document).ready(function () {
 		$('#modal-title-text').html('It\'s time to start work');
 		$('#modal-body-text').html('For ' + $('#length').html() + ' minutes');
 	}
-
-	$('#circle').on('click', function () {
-		// var time = Number($('#length').html()) * 60;
-		var timeStr = $('#time').html().split(':');
-		var elapsed = Number(timeStr[0] * 60 + Number(timeStr[1]));
-		console.log(elapsed);
-		// startTime(elapsed + 1);
-	});
 
 	$('#length-minus').on('click', function () {
 		var time = Number($('#length').html());
@@ -136,23 +135,25 @@ $(document).ready(function () {
 
 	$('#reset-btn').on('click', function () {
 		stopTime();
-		$('#length').html(2);
+		$('#length').html(1);
 		$('#break').html(1);
 		setTimeText();
 		isBreak = false;
 		isTimerStarted = false;
+		$('#session').html('WORK');
+		$('.ppc-progress-fill').css('transform', 'rotate(0deg)');
+		$('.ppc-percents span').html('0%');
 	});
 
 	$('#modal-btn-ok').on('click', function () {
-		console.log('modal-btn-ok isBreak', isBreak);
-
 		if (isBreak) {
 			$('#time').html(formatNumber(Number($('#break').html())) + ':00');
+			$('#session').html('BREAK');
 		} else {
 			$('#time').html(formatNumber(Number($('#length').html())) + ':00');
+			$('#session').html('WORK');
 		}
 
-		isBreak = isBreak ? false : true;
 		clearInterval(intervalId);
 		intervalId = setInterval(tick, 1000);
 	});
@@ -160,34 +161,4 @@ $(document).ready(function () {
 	function formatNumber(number) {
 		return number < 10 ? '0' + number : number;
 	}
-
-	//TEST ===============
-
-	// var progressbar = $('#progress_bar');
-	// max = progressbar.attr('max');
-	// time = (1000 / max) * 5;
-	// value = progressbar.val();
-
-	// var loading = function () {
-	// 	value += 1;
-	// 	addValue = progressbar.val(value);
-
-	// 	$('.progress-value').html(value + '%');
-	// 	var $ppc = $('.progress-pie-chart'),
-	// 		deg = 360 * value / 100;
-	// 	if (value > 50) {
-	// 		$ppc.addClass('gt-50');
-	// 	}
-
-	// 	$('.ppc-progress-fill').css('transform', 'rotate(' + deg + 'deg)');
-	// 	$('.ppc-percents span').html(value + '%');
-
-	// 	if (value == max) {
-	// 		clearInterval(animate);
-	// 	}
-	// };
-
-	// var animate = setInterval(function () {
-	// 	loading();
-	// }, time);
 });
