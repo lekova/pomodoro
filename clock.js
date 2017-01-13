@@ -135,8 +135,8 @@ $(document).ready(function () {
 
 	$('#reset-btn').on('click', function () {
 		stopTime();
-		$('#length').html(1);
-		$('#break').html(1);
+		$('#length').html(25);
+		$('#break').html(5);
 		setTimeText();
 		isBreak = false;
 		isTimerStarted = false;

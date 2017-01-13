@@ -5,44 +5,31 @@ body {
 	font-family: "Lato", "Open Sans";
 	color: white;
 }
-
-.font-smoothing {
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-}
-
 h1 {
 	font-size: 60px;
 	margin-top: 25px;
 }
-
 #session-settings {
 	font-size: 1.5em;
 	height: 100%;
 }
-
 .glyphicon:hover {
 	color: #646565;
 }
-
 p {
 	font-size: 3em;
 	z-index: 999;
 }
-
 #session {
 	padding-top: 30px;
 }
-
 #time {
 	padding-top: 5px;
 }
-
-#play-pause {
-	padding-top: 10px;
-	font-size: 2em;
+.font-smoothing {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
-
 .btn {
 	font-size: 25px;
 	padding-top: -5px;
@@ -52,25 +39,19 @@ p {
 	background-color: white;
 	margin: 20px;
 }
-
 .btn:hover {
 	background-color: white;
 	color: #646565;
 }
-
 .modalbtn {
 	font-size: 15px;
 	font-weight: bold;
 	color: #ED1C24;
 }
-
 .modal {
 	top: 210px;
 	color:#ED1C24;
 }
-
-/*TEST*/
-/* Pie Chart */
 .progress-pie-chart {
 	width: 280px;
 	height: 280px;
@@ -82,9 +63,7 @@ p {
 .progress-pie-chart.gt-50 {
 	background-color: #646565;
 }
-
 .ppc-progress {
-	content: "";
 	position: absolute;
 	border-radius: 50%;
 	left: calc(50% - 140px);
@@ -94,7 +73,6 @@ p {
 	clip: rect(0, 280px, 280px, 140px);
 }
 .ppc-progress .ppc-progress-fill {
-	content: "";
 	position: absolute;
 	border-radius: 50%;
 	left: calc(50% - 140px);
@@ -113,9 +91,7 @@ p {
 	clip: rect(0, 280px, 280px, 140px);
 	background: white;
 }
-
 .ppc-percents {
-	content: "";
 	position: absolute;
 	border-radius: 50%;
 	left: calc(50% - 135px);
@@ -131,7 +107,6 @@ p {
 	font-size: 2.6em;
 	color: white;
 }
-
 .pcc-percents-wrapper {
 	display: table-cell;
 	vertical-align: middle;
