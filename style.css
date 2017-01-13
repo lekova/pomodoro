@@ -1,9 +1,14 @@
 body {
-  background-color: #ED1C24;
-  margin: 0 auto;
-  text-align: center;
-  font-family: "Lato", "Open Sans";
-  color: white;
+	background-color: #ED1C24;
+	margin: 0 auto;
+	text-align: center;
+	font-family: "Lato", "Open Sans";
+	color: white;
+}
+
+.font-smoothing {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
@@ -18,32 +23,6 @@ h1 {
 
 .glyphicon:hover {
 	color: #646565;
-}
-
-.row-circle {
-	margin-top: 20px;
-}
-
-#circle {
-	position: relative;
-	margin: 0 auto;
-	width: 270px;
-	height: 270px;
-	border: 3px solid white;
-	border-radius: 50%;
-	overflow: hidden;
-}
-
-#circle-inner {
-	position: relative;
-	margin: 0 auto;
-	top: 7px;
-	width: 250px;
-	height: 250px;
-	background-color: #646565;
-	border-radius: 50%;
-	overflow: hidden;
-	cursor: pointer;
 }
 
 p {
@@ -69,95 +48,91 @@ p {
 	padding-top: -5px;
 	padding-bottom: -5px;
 	min-width: 100px;
-	color: red;
+	color: #ED1C24;
 	background-color: white;
 	margin: 20px;
-	font-weight: bold;
 }
 
 .btn:hover {
-	background-color: #646565;
-	color: white;
+	background-color: white;
+	color: #646565;
 }
 
 .modalbtn {
 	font-size: 15px;
 	font-weight: bold;
-	color: red;
+	color: #ED1C24;
 }
 
 .modal {
 	top: 210px;
-	color: red;
+	color:#ED1C24;
 }
 
 /*TEST*/
 /* Pie Chart */
 .progress-pie-chart {
-width:200px;
-height: 200px;
-border-radius: 50%;
-background-color: #E5E5E5;
-position: relative;
+	width: 280px;
+	height: 280px;
+	border-radius: 50%;
+	background-color: white;
+	position: relative;
+	margin: 30px auto 30px;
 }
 .progress-pie-chart.gt-50 {
-background-color: #81CE97;
+	background-color: #646565;
 }
 
 .ppc-progress {
-content: "";
-position: absolute;
-border-radius: 50%;
-left: calc(50% - 100px);
-top: calc(50% - 100px);
-width: 200px;
-height: 200px;
-clip: rect(0, 200px, 200px, 100px);
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+	left: calc(50% - 140px);
+	top: calc(50% - 140px);
+	width: 280px;
+	height: 280px;
+	clip: rect(0, 280px, 280px, 140px);
 }
 .ppc-progress .ppc-progress-fill {
-content: "";
-position: absolute;
-border-radius: 50%;
-left: calc(50% - 100px);
-top: calc(50% - 100px);
-width: 200px;
-height: 200px;
-clip: rect(0, 100px, 200px, 0);
-background: #81CE97;
-transform: rotate(60deg);
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+	left: calc(50% - 140px);
+	top: calc(50% - 140px);
+	width: 280px;
+	height: 280px;
+	clip: rect(0, 140px, 280px, 0);
+	background: #646565;
+	border-color: #ED1C24;
+	transform: rotate(0deg);
 }
 .gt-50 .ppc-progress {
-clip: rect(0, 100px, 200px, 0);
+	clip: rect(0, 140px, 280px, 0);
 }
 .gt-50 .ppc-progress .ppc-progress-fill {
-clip: rect(0, 200px, 200px, 100px);
-background: #E5E5E5;
+	clip: rect(0, 280px, 280px, 140px);
+	background: white;
 }
 
 .ppc-percents {
-content: "";
-position: absolute;
-border-radius: 50%;
-left: calc(50% - 173.91304px/2);
-top: calc(50% - 173.91304px/2);
-width: 173.91304px;
-height: 173.91304px;
-background: #fff;
-text-align: center;
-display: table;
+	content: "";
+	position: absolute;
+	border-radius: 50%;
+	left: calc(50% - 135px);
+	top: calc(50% - 135px);
+	width: 270px;
+	height: 270px;
+	background: #ED1C24;
+	text-align: center;
+	display: table;
 }
 .ppc-percents span {
-display: block;
-font-size: 2.6em;
-font-weight: bold;
-color: #81CE97;
+	display: block;
+	font-size: 2.6em;
+	color: white;
 }
 
 .pcc-percents-wrapper {
-display: table-cell;
-vertical-align: middle;
-}
-
-.progress-pie-chart {
-margin: 50px auto 0;
+	display: table-cell;
+	vertical-align: middle;
 }
