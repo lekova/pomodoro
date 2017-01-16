@@ -12,7 +12,8 @@
 	<link href='https://fonts.googleapis.com/css?family=Lato:100,100italic' rel='stylesheet' type='text/css'>
 	<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" type='text/css'>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type='text/css'>
-	<link href="style.css" rel="stylesheet" type='text/css'>
+	<link href="./style.css" rel="stylesheet" type='text/css'>
+	<link href="./color-switcher.css" rel="stylesheet">
 
 </head>
 
@@ -76,6 +77,31 @@
 		<button class="btn" id="reset-btn">Reset</button>
 	</div>
 
+	<div class="row">
+		<div class="themes" style="left: -270px;">
+			<div class="panel-options">
+			<p>Choose accent color</p>
+			<ul class="color-picker clearfix">
+				<li><a class="color-2" data-color-name="red" href="#"></a></li>
+				<li><a class="color-7" data-color-name="emerald" href="#"></a></li>
+				<li><a class="color-6" data-color-name="turquoise" href="#"></a></li>
+				<li><a class="color-8" data-color-name="greensea" href="#"></a></li>
+				<li><a class="color-1" data-color-name="blue" href="#"></a></li>
+				<li><a class="color-5" data-color-name="wetasphalt" href="#"></a></li>
+			</ul>
+			<!--<ul class="color-picker color-picker-last clearfix">
+				<li><a class="color-3" data-color-name="sunflower" href="#"></a></li>
+				<li><a class="color-9" data-color-name="orange" href="#"></a></li>
+				<li><a class="color-4" data-color-name="carrot" href="#"></a></li>
+				<li><a class="color-10" data-color-name="silver" href="#"></a></li>
+			</ul>-->
+			</div>
+			<div class="panel-toggle left"> <!--<i class="glyphicons glyphicons-cogwheel"></i> -->
+				<span class="glyphicon glyphicon-cog"></span>
+			</div>
+		</div>
+	</div>
+	
 	<div class="modal fade" id="myModal" role="dialog">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -90,12 +116,11 @@
 		</div>
 	</div>
 
-	
-
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
 	crossorigin="anonymous"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="clock.js"></script>
+<script src="color-switcher.js"></script>
 </body>
 
 </html>

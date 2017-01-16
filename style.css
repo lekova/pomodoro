@@ -122,9 +122,9 @@ p {
 	vertical-align: middle;
 }
 
-@media screen and (min-width: 375px) and (max-width: 480px){
+@media screen and (min-width: 320px) and (max-width: 374px){
 	h1 {
-		font-size: 3.5em;
+		font-size: 3em;
 	}
 	#session-settings {
 		font-size: 2em;
@@ -132,5 +132,26 @@ p {
 	}
 	.btn {
 		margin: 0 10px 0 10px;
+		min-width: 80px;
+	}
+}
+
+@media screen and (min-width: 375px) and (max-width: 480px){
+	h1 {
+		font-size: 3.5em;
+	}
+	#session-settings {
+		font-size: 2.5em;
+		margin-top: 0px;
+	}
+	.btn {
+		margin: 0 10px 0 10px;
+	}
+}
+
+@media screen and (min-width: 481px) {
+	.themes {
+		position: absolute;
+		top: 150px;
 	}
 }

@@ -1,0 +1,87 @@
+.themes {
+	position: absolute;
+	width: 320px;
+	left: 0px;
+	/*top: 150px;*/
+	margin-top: 20px;
+	font-size: 24px;
+	color: #ED1C24;
+	z-index: 999;
+
+	-webkit-touch-callout: none;
+	  -webkit-user-select: none;
+	   -khtml-user-select: none;
+	     -moz-user-select: none;
+	      -ms-user-select: none;
+	          user-select: none;
+}
+
+.panel-toggle {
+	background-color: white;
+	position: absolute;
+	left: 269px;
+	top: 0px;
+	height: 50px;
+	width: 50px;
+	text-align: center;
+	line-height: 50px;
+	cursor: pointer;
+}
+
+.panel-toggle i {
+	font-size: 1.1em;
+}
+
+.panel-options {
+	width: 270px;
+	background-color: white;
+	padding: 15px 20px;
+}
+
+.panel-options p {
+	font-size: 0.65em;
+	font-weight: 700;
+	margin: 0 0 10px 0;
+}
+
+.color-picker {
+	list-style-type: none;
+	margin: 0 0 5px 0;
+	padding: 0;
+}
+
+.color-picker.color-picker-last {
+	margin: 0 0 20px 0;
+}
+
+.color-picker li {
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+
+.color-picker li:last-child {
+	margin-right: 0;
+}
+
+.color-picker li a {
+	display: block;
+	height: 30px;
+	width: 30px;
+}
+
+.color-picker li a:hover,
+.color-picker li a.selected-color {
+	border: 3px solid #e0e0e0;
+}
+
+.color-1 { background-color: #00BFFF; border: 3px solid #00BFFF; }
+.color-2 { background-color: #ED1C24; border: 3px solid #ED1C24; }
+.color-3 { background-color: #f1c40f; border: 3px solid #f1c40f; }
+.color-4 { background-color: #e67e22; border: 3px solid #e67e22; }
+.color-5 { background-color: #34495e; border: 3px solid #34495e; }
+.color-6 { background-color: #1cc9a8; border: 3px solid #1cc9a8; }
+.color-7 { background-color: #33ce75; border: 3px solid #33ce75; }
+.color-8 { background-color: #16a085; border: 3px solid #16a085; }
+.color-9 { background-color: #f39c12; border: 3px solid #f39c12; }
+.color-10 { background-color: #bdc3c7; border: 3px solid #bdc3c7; }
