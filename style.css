@@ -121,3 +121,18 @@ p {
 	display: table-cell;
 	vertical-align: middle;
 }
+
+@media screen and (min-width: 375px) and (max-width: 480px){
+	h1 {
+		font-size: 3.5em;
+	}
+	#session-settings {
+		font-size: 2em;
+		margin-top:10px;
+	}
+	.btn {
+		margin-bottom: 0px;
+		margin-left: 10px;
+		margin-right: 10px;
+	}
+}
