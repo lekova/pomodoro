@@ -24,6 +24,7 @@ $(document).ready(function () {
 				isBreak = isBreak ? false : true;
 			}
 			isBreak ? setModalBreak() : setModalTime();
+			audioElement.play();
 			$('#myModal').modal();
 			return;
 		}
@@ -157,6 +158,9 @@ $(document).ready(function () {
 		clearInterval(intervalId);
 		intervalId = setInterval(tick, 1000);
 	});
+
+	var audioElement = document.createElement('audio');
+	audioElement.setAttribute('src', 'alarm.mp3');
 
 	function formatNumber(number) {
 		return number < 10 ? '0' + number : number;
