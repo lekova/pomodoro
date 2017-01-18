@@ -1,11 +1,9 @@
 (function($){
 	$(document).ready(function () {
 		$('.color-picker a').click(function (event) {
-			console.log('hello');
 			event.preventDefault();
 			$(this).addClass('selected-color');
 			var selectedColor = $(this).css('backgroundColor');
-			console.log('selectedColor', rgbToHex(selectedColor));
 			changeThemeColors(selectedColor);
 		});
 
@@ -22,10 +20,10 @@
 			}
 		});
 	});
-	
+
 	function rgbToHex(a){
-		a = a.replace(/[^\d,]/g,"").split(","); 
-		return "#" + ((1 << 24) + ( +a[0] << 16) + (+a[1] << 8) + 
+		a = a.replace(/[^\d,]/g,"").split(",");
+		return "#" + ((1 << 24) + ( +a[0] << 16) + (+a[1] << 8) +
 			+a[2]).toString(16).slice(1)
 	}
 

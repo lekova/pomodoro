@@ -35,7 +35,7 @@ $(document).ready(function () {
 		var mns = Math.floor(secs / 60);
 		secs %= 60;
 		var pretty = (mns < 10 ? '0' : '') + mns + ':' + (secs < 10 ? '0' : '') + secs;
-		
+
 		var percent;
 		if(isBreak) {
 			percent = Math.round((elapsed * 100) / Number($('#break').html() * 60),1);
@@ -60,7 +60,7 @@ $(document).ready(function () {
 
 		$('.ppc-progress-fill').css('transform', 'rotate(' + deg + 'deg)');
 		$('.ppc-percents span').html(value + '%');
-		
+
 		$('#time').html(pretty);
 	}
 
@@ -81,6 +81,20 @@ $(document).ready(function () {
 	function setModalTime() {
 		$('#modal-title-text').html('It\'s time to start work');
 		$('#modal-body-text').html('For ' + $('#length').html() + ' minutes');
+	}
+
+	function reset() {
+		stopTime();
+		$('#length').html(25);
+		$('#break').html(5);
+		setTimeText();
+		isBreak = false;
+		isTimerStarted = false;
+		$('#session').html('WORK');
+		$('#time').html('25:00');
+		$('.ppc-progress-fill').css('transform', 'rotate(0deg)');
+		$('.ppc-percents span').html('0%');
+		$('#pbar').removeClass('gt-50');
 	}
 
 	$('#length-minus').on('click', function () {
@@ -135,15 +149,7 @@ $(document).ready(function () {
 	});
 
 	$('#reset-btn').on('click', function () {
-		stopTime();
-		$('#length').html(25);
-		$('#break').html(5);
-		setTimeText();
-		isBreak = false;
-		isTimerStarted = false;
-		$('#session').html('WORK');
-		$('.ppc-progress-fill').css('transform', 'rotate(0deg)');
-		$('.ppc-percents span').html('0%');
+		reset();
 	});
 
 	$('#modal-btn-ok').on('click', function () {
@@ -157,6 +163,10 @@ $(document).ready(function () {
 
 		clearInterval(intervalId);
 		intervalId = setInterval(tick, 1000);
+	});
+
+	$('#modal-btn-cancel').on('click', function () {
+		reset();
 	});
 
 	var audioElement = document.createElement('audio');
