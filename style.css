@@ -2,8 +2,16 @@ body {
 	background-color: #ED1C24;
 	margin: 0 auto;
 	text-align: center;
-	font-family: "Lato", "Open Sans";
+	font-family: 'SinkinSans', 'CaviarDreams';
 	color: white;
+}
+@font-face {
+	font-family: 'CaviarDreams';
+	src: url('CaviarDreams.ttf');
+}
+@font-face {
+font-family: 'SinkinSans';
+	src: url('SinkinSans-200XLight.otf');
 }
 h1 {
 	font-size: 60px;
